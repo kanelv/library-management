@@ -1,0 +1,16 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres:15.4-alpine3.18
+    container_name: library-management-db
+    restart: always
+    environment:
+      POSTGRES_DB: library-management-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d
+      - ./docker/postgres/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
